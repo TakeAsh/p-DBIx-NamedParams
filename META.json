@@ -1,7 +1,7 @@
 {
-   "abstract" : "It's new $module",
+   "abstract" : "use named parameters instead of '?'",
    "author" : [
-      "TakeAsh <take@TakeAsh.net>"
+      "L<TakeAsh|https://github.com/TakeAsh/>"
    ],
    "dynamic_config" : 0,
    "generated_by" : "Minilla/v3.1.8, CPAN::Meta::Converter version 2.150010",
@@ -42,17 +42,41 @@
       },
       "runtime" : {
          "requires" : {
+            "Carp" : "0",
+            "DBI" : "0",
+            "DBI::Const::GetInfoType" : "0",
+            "Log::Dispatch" : "0",
+            "POSIX" : "0",
+            "Term::Encoding" : "0",
             "perl" : "5.008001"
          }
       },
       "test" : {
          "requires" : {
-            "Test::More" : "0.98"
+            "DBD::SQLite" : "0",
+            "FindBin::libs" : "0",
+            "Test::More" : "0.98",
+            "Test::More::UTF8" : "0",
+            "YAML::Syck" : "0"
          }
       }
    },
    "release_status" : "unstable",
-   "version" : "0.01",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/TakeAsh/p-DBIx-NamedParams/issues"
+      },
+      "homepage" : "https://github.com/TakeAsh/p-DBIx-NamedParams",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/TakeAsh/p-DBIx-NamedParams.git",
+         "web" : "https://github.com/TakeAsh/p-DBIx-NamedParams"
+      }
+   },
+   "version" : "v0.0.6",
+   "x_contributors" : [
+      "TakeAsh <take@TakeAsh.net>"
+   ],
    "x_serialization_backend" : "JSON::PP version 4.04",
    "x_static_install" : 1
 }
