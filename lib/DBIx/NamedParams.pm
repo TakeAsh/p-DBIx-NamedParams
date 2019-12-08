@@ -272,7 +272,13 @@ When the hash reference doesn't have the key that is same to the parameter name,
 
 =head1 SEE ALSO
 
-L<DBIx::NamedBinding> also provides similar functionality.
+=head2 Similar modules
+
+L<Tao::DBI>
+
+L<DBIx::NamedBinding>
+
+=head2 DBD informations
 
 L<SQLite Keywords|https://www.sqlite.org/lang_keywords.html> explains how to quote the identifier.
 

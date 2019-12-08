@@ -91,7 +91,13 @@ When the hash reference doesn't have the key that is same to the parameter name,
 
 # SEE ALSO
 
-[DBIx::NamedBinding](https://metacpan.org/pod/DBIx%3A%3ANamedBinding) also provides similar functionality.
+## Similar modules
+
+[Tao::DBI](https://metacpan.org/pod/Tao%3A%3ADBI)
+
+[DBIx::NamedBinding](https://metacpan.org/pod/DBIx%3A%3ANamedBinding)
+
+## DBD informations
 
 [SQLite Keywords](https://www.sqlite.org/lang_keywords.html) explains how to quote the identifier.
 
