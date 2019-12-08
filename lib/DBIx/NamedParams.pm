@@ -12,7 +12,7 @@ use Log::Dispatch;
 use POSIX qw( strftime );
 use Term::Encoding qw( term_encoding );
 
-use version 0.77; our $VERSION = version->declare("v0.0.6");
+use version 0.77; our $VERSION = version->declare("v0.0.7");
 
 my $_default_log_filename = $ENV{'HOME'} || $ENV{'USERPROFILE'};
 $_default_log_filename =~ s#\\#/#g;

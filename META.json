@@ -54,7 +54,7 @@
       },
       "test" : {
          "requires" : {
-            "DBD::SQLite" : "0",
+            "DBD::SQLite" : "1.62",
             "FindBin::libs" : "0",
             "Test::More" : "0.98",
             "Test::More::UTF8" : "0",
@@ -74,7 +74,7 @@
          "web" : "https://github.com/TakeAsh/p-DBIx-NamedParams"
       }
    },
-   "version" : "v0.0.6",
+   "version" : "v0.0.7",
    "x_contributors" : [
       "TakeAsh <take@TakeAsh.net>"
    ],

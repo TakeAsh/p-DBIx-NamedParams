@@ -12,7 +12,7 @@ on configure => sub {
 };
 
 on test => sub {
-    requires 'DBD::SQLite';
+    requires 'DBD::SQLite', '1.62';
     requires 'FindBin::libs';
     requires 'Test::More', '0.98';
     requires 'Test::More::UTF8';

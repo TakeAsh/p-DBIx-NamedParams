@@ -3,7 +3,7 @@ use Test::More;
 use Test::More::UTF8;
 use POSIX qw( strftime );
 use YAML::Syck qw(Dump);
-use DBD::SQLite;
+use DBD::SQLite 1.62;
 use FindBin::libs;
 use DBIx::NamedParams;
 use open ':std' => ( $^O eq 'MSWin32' ? ':locale' : ':utf8' );
