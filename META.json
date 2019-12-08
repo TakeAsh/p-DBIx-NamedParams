@@ -42,13 +42,14 @@
       },
       "runtime" : {
          "requires" : {
-            "Carp" : "0",
             "DBI" : "0",
             "DBI::Const::GetInfoType" : "0",
+            "Encode" : "0",
             "Log::Dispatch" : "0",
-            "POSIX" : "0",
             "Term::Encoding" : "0",
-            "perl" : "5.008001"
+            "parent" : "0",
+            "perl" : "5.008001",
+            "version" : "0.77"
          }
       },
       "test" : {
