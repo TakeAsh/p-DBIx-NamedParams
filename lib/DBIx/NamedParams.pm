@@ -258,7 +258,7 @@ Prepares a statement for later execution by the database engine and returns a re
 When the SQL statement has the variable array C<:E<lt>NameE<gt>+-E<lt>TypeE<gt>>, the hash reference as the second argument is mandatory.
 When the SQL statement doesn't have the variable array C<:E<lt>NameE<gt>+-E<lt>TypeE<gt>>, the hash reference as the second argument is optional.
 
-    my $sth = $dbh->prepare_ex( $statement, $hashref ) or diag($DBI::errstr);
+    my $sth = $dbh->prepare_ex( $statement, $hashref ) or die($DBI::errstr);
 
 =head2 Database Handle Methods
 
@@ -268,7 +268,7 @@ Binds each parameters at once according to the hash reference.
 The hash reference should have the keys that are same names to the parameter names in the SQL statement.
 When the hash reference doesn't have the key that is same to the parameter name, the parameter is not set. 
 
-    $sth->bind_param_ex( $hashref ) or diag($DBI::errstr);
+    $sth->bind_param_ex( $hashref ) or die($DBI::errstr);
 
 =head1 SEE ALSO
 
