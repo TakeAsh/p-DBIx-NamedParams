@@ -2,6 +2,8 @@ Revision history for Perl extension DBIx-NamedParams
 
 {{$NEXT}}
 
+v0.0.6 2019-12-08T18:02:10Z
+
     - add test for SQLite.
     - add POD.
 
