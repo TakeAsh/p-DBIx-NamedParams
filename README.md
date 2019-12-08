@@ -74,8 +74,8 @@ Returns the hash from the driver type names to the DBI typenames.
 ### prepare\_ex
 
 Prepares a statement for later execution by the database engine and returns a reference to a statement handle object.
-When the SQL statement has the variable array `:<Name`+-<Type>>, the hash reference as the second argument is mandatory.
-When the SQL statement doesn't have the variable array `:<Name`+-<Type>>, the hash reference as the second argument is optional.
+When the SQL statement has the variable array `:<Name>+-<Type>`, the hash reference as the second argument is mandatory.
+When the SQL statement doesn't have the variable array `:<Name>+-<Type>`, the hash reference as the second argument is optional.
 
     my $sth = $dbh->prepare_ex( $statement, $hashref ) or diag($DBI::errstr);
 
