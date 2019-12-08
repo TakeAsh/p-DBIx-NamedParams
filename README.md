@@ -111,4 +111,3 @@ it under the same terms as Perl itself.
 # AUTHOR
 
 [TakeAsh](https://github.com/TakeAsh/)
-[p-DBIx-NamedParams](https://github.com/TakeAsh/p-DBIx-NamedParams)

@@ -292,7 +292,6 @@ it under the same terms as Perl itself.
 =head1 AUTHOR
 
 L<TakeAsh|https://github.com/TakeAsh/>
-L<p-DBIx-NamedParams|https://github.com/TakeAsh/p-DBIx-NamedParams>
 
 =cut
 
