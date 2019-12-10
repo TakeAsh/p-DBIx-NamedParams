@@ -13,7 +13,7 @@ note("DBI version:\t${DBI::VERSION}");
 note("DBD::SQLite version:\t${DBD::SQLite::VERSION}");
 note( strftime( "%Y-%m-%d %H:%M:%S", localtime ) );
 
-my $dbh = undef;
+my $dbh;
 
 subtest 'Prepare DB' => sub {
     ok( $dbh = DBI->connect(
@@ -50,7 +50,7 @@ subtest 'driver_typename_map' => sub {
             [   map {
                     my $typeInfo = $_;
                     scalar {
-                        map { $_ => $typeInfo->{$_}; }
+                        map      { $_ => $typeInfo->{$_}; }
                             grep { $_ =~ /TYPE/ }
                             keys( %{$typeInfo} )
                     };
@@ -67,15 +67,15 @@ subtest 'Insert data (scalar binding)' => sub {
         ),
         'Prepare INSERT'
     ) or diag($DBI::errstr);
-    my @records = (
+    my @inputs = (
         { ID => 4, Name => 'Linda', State => 4, },
         { ID => 5, Name => 'Rina',  State => 5, },
         { ID => 6, Name => 'Anya',  State => 6, },
     );
-    foreach my $record (@records) {
-        ok( $sth->bind_param_ex($record), "Bind '$record->{Name}'" )
+    foreach my $input (@inputs) {
+        ok( $sth->bind_param_ex($input), "Bind '$input->{Name}'" )
             or diag($DBI::errstr);
-        ok( $sth->execute(), "Insert '$record->{Name}'" ) or diag($DBI::errstr);
+        ok( $sth->execute(), "Insert '$input->{Name}'" ) or diag($DBI::errstr);
     }
     $sth->finish;
 };
@@ -122,7 +122,7 @@ subtest 'Select data (fixed array binding)' => sub {
 };
 
 subtest 'Select data (variable array binding)' => sub {
-    my $sth = undef;
+    my $sth;
     ok( $sth = $dbh->prepare_ex(
             'SELECT `ID`, `Name`, `Status` FROM `Users` WHERE `Status` in (:State+-INTEGER)',
             { State => [ 1, 2, 5 ], }
@@ -142,7 +142,8 @@ subtest 'Select data (variable array binding)' => sub {
 };
 
 subtest 'Select data (two steps binding)' => sub {
-    my $sth = undef;
+    $DBIx::NamedParams::KeepBindingIfNoKey = 1;
+    my $sth;
     ok( $sth = $dbh->prepare_ex(
             qq{
                 SELECT `ID`, `Name`, `Status` FROM `Users` 
@@ -164,6 +165,41 @@ subtest 'Select data (two steps binding)' => sub {
         ok( $sth->execute(), 'Execute query' ) or diag($DBI::errstr);
         is_deeply( $sth->fetchrow_hashref, $expected->{'Name'} eq 'Not exist' ? undef : $expected,
             toTestName($expected) );
+    }
+    $sth->finish;
+};
+
+subtest 'KeepBindingIfNoKey' => sub {
+    $DBIx::NamedParams::KeepBindingIfNoKey = 1;
+    my @inputs = (
+        { ID => 7, Name => 'Tiffany', State => 7, },
+        { ID => 8, Name => 'Dana', },                  # `State` is not defined.
+        { ID => 9, Name => 'Cartia', State => undef, },    # clear `State`.
+    );
+    my @expecteds = (
+        { ID => 7, Name => 'Tiffany', Status => 7, },
+        { ID => 8, Name => 'Dana',    Status => 7, },        # `Status` is same to previous record.
+        { ID => 9, Name => 'Cartia',  Status => undef, },    # `Status` is cleared.
+        undef,
+    );
+    my $sth;
+    ok( $sth = $dbh->prepare_ex(
+            'INSERT INTO `Users` ( `ID`, `Name`, `Status` ) VALUES ( :ID-INTEGER, :Name-VARCHAR, :State-INTEGER )'
+        ),
+        'Prepare INSERT'
+    ) or diag($DBI::errstr);
+    foreach my $input (@inputs) {
+        ok( $sth->bind_param_ex($input), "Bind '$input->{Name}'" )
+            or diag($DBI::errstr);
+        ok( $sth->execute(), "Insert '$input->{Name}'" ) or diag($DBI::errstr);
+    }
+    $sth->finish;
+    ok( $sth = $dbh->prepare_ex('SELECT `ID`, `Name`, `Status` FROM `Users` WHERE `ID` in (7,8,9)'),
+        'Prepare SELECT'
+    ) or diag($DBI::errstr);
+    ok( $sth->execute(), 'Execute query' ) or diag($DBI::errstr);
+    foreach my $expected (@expecteds) {
+        is_deeply( $sth->fetchrow_hashref, $expected, toTestName($expected) );
     }
     $sth->finish;
 };

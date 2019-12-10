@@ -12,7 +12,9 @@ use Log::Dispatch;
 use POSIX qw( strftime );
 use Term::Encoding qw( term_encoding );
 
-use version 0.77; our $VERSION = version->declare("v0.0.7");
+use version 0.77; our $VERSION = version->declare("v0.0.8");
+
+our $KeepBindingIfNoKey = 0;
 
 my $_default_log_filename = $ENV{'HOME'} || $ENV{'USERPROFILE'};
 $_default_log_filename =~ s#\\#/#g;
@@ -155,7 +157,7 @@ sub bind_param_ex {
     my $thisFunc = _thisFuncName();
     for ( my $i = 1; $i < @_NamedParams; ++$i ) {
         my $param = $_NamedParams[$i];
-        if ( !exists( $refHash->{ $param->{'Name'} } ) ) {
+        if ( $KeepBindingIfNoKey && !exists( $refHash->{ $param->{'Name'} } ) ) {
             next;
         }
         my $idx    = $param->{'Array'};
@@ -226,6 +228,20 @@ This module allows you to use named parameters as the placeholders instead of '?
 =head1 DESCRIPTION
 
 DBIx::NamedParams helps binding SQL parameters.
+
+=head1 FLAGS
+
+=head2 $DBIx::NamedParams::KeepBindingIfNoKey
+
+In C<bind_param_ex()>, this flag controls the behavior when the hash reference doesn't have the key 
+in the SQL statement.
+
+Defaults to false. The placeholders according to the missing keys are set to C<undef>. 
+All of the placeholders have to be set at once.
+
+Setting this to a true value, the placeholders according to the missing keys are kept. 
+You can set some placeholders at first, and set other placeholders later.
+If you want to set a placeholder to null, you have to set C<undef> explicitly.
 
 =head1 METHODS
 

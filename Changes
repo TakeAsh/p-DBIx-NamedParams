@@ -2,6 +2,10 @@ Revision history for Perl extension DBIx-NamedParams
 
 {{$NEXT}}
 
+v0.0.8 2019-12-10T13:08:41Z
+
+    - introduce $DBIx::NamedParams::KeepBindingIfNoKey flag.
+
 v0.0.7 2019-12-08T20:37:59Z
 
     - specify DBD::SQLite version for test.

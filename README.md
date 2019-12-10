@@ -46,6 +46,20 @@ This module allows you to use named parameters as the placeholders instead of '?
 
 DBIx::NamedParams helps binding SQL parameters.
 
+# FLAGS
+
+## $DBIx::NamedParams::KeepBindingIfNoKey
+
+In `bind_param_ex()`, this flag controls the behavior when the hash reference doesn't have the key 
+in the SQL statement.
+
+Defaults to false. The placeholders according to the missing keys are set to `undef`. 
+All of the placeholders have to be set at once.
+
+Setting this to a true value, the placeholders according to the missing keys are kept. 
+You can set some placeholders at first, and set other placeholders later.
+If you want to set a placeholder to null, you have to set `undef` explicitly.
+
 # METHODS
 
 ## DBIx::NamedParams Class Methods
