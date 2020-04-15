@@ -16,7 +16,7 @@ use version 0.77; our $VERSION = version->declare("v0.0.8");
 
 our $KeepBindingIfNoKey = 0;
 
-my $_default_log_filename = $ENV{'HOME'} || $ENV{'USERPROFILE'};
+my $_default_log_filename = $ENV{'HOME'} || $ENV{'USERPROFILE'} || $ENV{'TMP'} || '/tmp';
 $_default_log_filename =~ s#\\#/#g;
 $_default_log_filename .= '/DBIx-NamedParams.log';
 
