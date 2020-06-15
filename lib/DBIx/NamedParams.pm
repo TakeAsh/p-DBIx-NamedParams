@@ -299,6 +299,8 @@ L<Tao::DBI>
 
 L<DBIx::NamedBinding>
 
+L<SQL::NamedPlaceholder>
+
 =head2 DBD informations
 
 L<SQLite Keywords|https://www.sqlite.org/lang_keywords.html> explains how to quote the identifier.
