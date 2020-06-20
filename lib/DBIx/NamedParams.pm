@@ -282,7 +282,7 @@ When the SQL statement doesn't have the variable array C<:E<lt>NameE<gt>+-E<lt>T
 
     my $sth = $dbh->prepare_ex( $statement, $hashref ) or die($DBI::errstr);
 
-=head2 Database Handle Methods
+=head2 Statement Handle Methods
 
 =head3 bind_param_ex
 
