@@ -1,6 +1,8 @@
 Revision history for Perl extension DBIx-NamedParams
 
 {{$NEXT}}
+
+v0.0.11 2020-11-28T08:46:04Z
     - fix: bindings are corrupt when multiple statements are used at once.
 
 v0.0.10 2020-06-20T07:51:36Z
