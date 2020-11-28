@@ -13,7 +13,7 @@ use POSIX qw( strftime );
 use Scalar::Util qw( reftype );
 use Term::Encoding qw( term_encoding );
 
-use version 0.77; our $VERSION = version->declare("v0.0.10");
+use version 0.77; our $VERSION = version->declare("v0.0.11");
 
 our $KeepBindingIfNoKey = 0;
 
